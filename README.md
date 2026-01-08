@@ -47,15 +47,6 @@ Was created to make stylized maps for the TTRPG Cyberpunk 2020
 ### 📝 Live ASCII Editor
 Edit your ASCII map directly in the app and see changes immediately.
 
-###########
-#.........#
-#..###....#
-#..#.#....#
-#..###....#
-#.........#
-###########
-
-
 ### 🎨 Visual Customization
 - Background color picker
 - Foreground (text) color picker
