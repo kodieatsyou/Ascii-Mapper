@@ -89,6 +89,5 @@ Example:
 
 ## 🖼 Example Outputs
 
-```md
-![Example ASCII Map](./Rooftop.png)
+![Example ASCII Map](Tests/5thFloor.png)
 
