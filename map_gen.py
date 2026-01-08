@@ -55,7 +55,6 @@ def render_ascii_to_image(
     tmp_draw = ImageDraw.Draw(tmp)
     font = pick_monospace_font(font_path, font_size)
 
-    # Derive cell size from font if not set
     if cell_w is None or cell_h is None:
         bbox = tmp_draw.textbbox((0, 0), "M", font=font)
         gw = bbox[2] - bbox[0]
@@ -69,7 +68,6 @@ def render_ascii_to_image(
     img = Image.new("RGBA", (img_w, img_h), bg)
     draw = ImageDraw.Draw(img)
 
-    # Draw chars centered in each cell
     for y, line in enumerate(padded):
         for x, ch in enumerate(line):
             cx0 = margin + x * cell_w
@@ -84,7 +82,6 @@ def render_ascii_to_image(
 
             draw.text((tx, ty), ch, fill=fg, font=font)
 
-    # Grid on top
     if grid:
         left = margin
         top = margin
@@ -104,7 +101,7 @@ def render_ascii_to_image(
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("ASCII Map → PNG")
+        self.title("ASCII Map -> PNG")
         self.geometry("1180x720")
         self.minsize(1000, 650)
 
@@ -115,7 +112,7 @@ class App(tk.Tk):
         self.var_font_size = tk.IntVar(value=18)
         self.var_cell_w = tk.IntVar(value=0)   # 0 means "auto"
         self.var_cell_h = tk.IntVar(value=0)   # 0 means "auto"
-        self.var_margin = tk.IntVar(value=16)
+        self.var_margin = tk.IntVar(value=0)
 
         self.var_bg = tk.StringVar(value="#0b0f14")
         self.var_fg = tk.StringVar(value="#e6edf3")
@@ -124,7 +121,7 @@ class App(tk.Tk):
         self.var_grid_color = tk.StringVar(value="#2b3440")
         self.var_grid_width = tk.IntVar(value=1)
 
-        # Font selection (path to .ttf/.otf). None means auto-pick.
+        # Font selection
         self.var_font_path = tk.StringVar(value="")  # empty => auto
         self._font_label_var = tk.StringVar(value="Font: Auto (monospace fallback)")
 
@@ -269,7 +266,7 @@ class App(tk.Tk):
             foreground="#666"
         ).grid(row=25, column=0, sticky="w", pady=(6, 0))
 
-        # Right: split editor + preview using PanedWindow
+        # Right: split editor + preview
         right = ttk.Frame(root)
         right.grid(row=0, column=1, sticky="nsew")
         right.rowconfigure(0, weight=1)
@@ -356,7 +353,6 @@ class App(tk.Tk):
     # ---------- Events / bindings ----------
 
     def _wire_events(self):
-        # Re-render when settings change (debounced)
         for v in (
             self.var_font_size, self.var_cell_w, self.var_cell_h, self.var_margin,
             self.var_bg, self.var_fg,
@@ -626,12 +622,10 @@ class App(tk.Tk):
         p = Path(path)
         self.var_font_path.set(str(p))
 
-        # Update label with just filename for friendliness
         self._font_label_var.set(f"Font: {p.name}")
 
-        # Also switch editor font if possible (not critical, just nice)
         try:
-            # Tk can't load TTF directly as a named font; keep the editor monospace.
+            # can't load TTF directly as a named font so keep the editor monospace.
             pass
         except Exception:
             pass
