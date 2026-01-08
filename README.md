@@ -1,5 +1,5 @@
-#ASCII MAPPER
-
+# ASCII MAPPER
+```
   ______    ______    ______   ______  ______                  
  /      \  /      \  /      \ /      |/      |                 
 /$$$$$$  |/$$$$$$  |/$$$$$$  |$$$$$$/ $$$$$$/                  
@@ -22,7 +22,7 @@ $$ |$$$/ $$ |$$ |  $$ |$$ |      $$ |      $$ |_____ $$ |  $$ |
 $$ | $/  $$ |$$ |  $$ |$$ |      $$ |      $$       |$$ |  $$ |
 $$/      $$/ $$/   $$/ $$/       $$/       $$$$$$$$/ $$/   $$/ 
                                                                
-                                                               
+```                                      
 **ASCII Mapper** is a small visual tool that converts ASCII text maps into clean, grid-aligned images.
 
 No scripting. No command line. Just type ASCII → get a PNG.
