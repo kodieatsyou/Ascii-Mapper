@@ -78,7 +78,7 @@ Example:
 
 ---
 
-## 🖼 Example Outputs
+## 🖼 Example Output
 
 ![Example ASCII Map](Tests/5thFloor.png)
 
